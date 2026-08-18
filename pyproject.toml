@@ -9,7 +9,7 @@ description = "Measurement toolkit for state-gated co-expression coupling: layer
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
-authors = [{ name = "Liu Yuanshui", email = "[to fill before release]" }]
+authors = [{ name = "Liu Yuanshui" }]
 keywords = ["co-expression", "single-cell", "gating", "ARDS", "inflammasome", "measurement"]
 classifiers = [
     "Intended Audience :: Science/Research",
@@ -22,7 +22,7 @@ dependencies = ["numpy>=1.24", "pandas>=2.0", "scipy>=1.10"]
 [project.urls]
 "OSF registration" = "https://doi.org/10.17605/OSF.IO/4TZH9"
 "OSF project" = "https://osf.io/v8w5a"
-Homepage = "[to fill: GitHub repo URL after creation]"
+Homepage = "https://github.com/Shuiruolys-Liu/gating-metrics"
 
 [tool.setuptools]
 packages = ["gating_metrics"]

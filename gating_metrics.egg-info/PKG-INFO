@@ -1,3 +1,25 @@
+Metadata-Version: 2.4
+Name: gating-metrics
+Version: 0.1.0
+Summary: Measurement toolkit for state-gated co-expression coupling: layer couplings, exact covariance partition, platform contrast, closed-form power planning
+Author: Liu Yuanshui
+License: MIT
+Project-URL: OSF registration, https://doi.org/10.17605/OSF.IO/4TZH9
+Project-URL: OSF project, https://osf.io/v8w5a
+Project-URL: Homepage, https://github.com/Shuiruolys-Liu/gating-metrics
+Keywords: co-expression,single-cell,gating,ARDS,inflammasome,measurement
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy>=1.24
+Requires-Dist: pandas>=2.0
+Requires-Dist: scipy>=1.10
+Dynamic: license-file
+
 # gating_metrics — measurement toolkit for state-gated co-expression coupling
 
 Open-source Python toolkit accompanying the ARDS gating-circuit study
