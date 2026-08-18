@@ -1,0 +1,82 @@
+# gating_metrics — measurement toolkit for state-gated co-expression coupling
+
+Open-source Python toolkit accompanying the ARDS gating-circuit study
+(manifest modules F1/F2/F3, registered 2026-08-18 before execution). It
+formalises the study's core measurement claim — that a state-gated
+hub–module coupling (e.g. KAT2A vs the inflammasome module) is an
+**individual-level, platform-dependent emergent measurement** — into
+reusable, tested routines.
+
+## What it provides
+
+| Module | Contents |
+|---|---|
+| `coupling.py` | Layer-wise Spearman coupling: `L_cell` (within-sample per-cell, with detected-gene-count partial sensitivity), `L_indiv` (between-individual pseudobulk), `L_bulk` (bulk-assay). |
+| `partition.py` | Exact method-of-moments (nested ANOVA cross-product) covariance partition: between-individual / between-compartment-within-individual / within components, with sample-level bootstrap CIs. |
+| `platform_contrast.py` (renamed from `platform.py` to avoid the stdlib collision) | Fisher-Z same-compartment cross-platform contrast (the "is it a platform artefact?" test) and the measurement-conditions compatibility report / atlas verdict (frozen classification thresholds: DOMINANT-NEGATIVE r≤−0.2 & p<0.05; DOMINANT-POSITIVE r≥+0.2 & p<0.05; else INDETERMINATE; atlas support = ≥80% DOMINANT-NEGATIVE within a condition class). |
+| `power.py` | Closed-form Fisher-Z planning tools: n for a target coupling, power at n, minimum detectable |r|. |
+
+## Quick start
+
+```python
+import pandas as pd
+from coupling import layer_cell, layer_indiv
+from partition import partition, bootstrap_share_between
+
+# cells: one row per cell with columns sample, compartment, x (hub gene),
+# y (module score), ng (detected-gene count)
+per_group, summary = layer_cell(cells, ["sample", "compartment"])
+r_indiv, p_indiv = layer_indiv(pseudobulk)          # one row per sample
+part = partition(cells, by=("sample", "compartment"))
+lo, hi = bootstrap_share_between(cells, by=("sample", "compartment"))
+```
+
+Self-tests (synthetic two-level data, seed 42; partition identity, power
+closed form, Fisher-Z sign reversal, classification thresholds):
+
+```
+python test_gating_metrics.py
+```
+
+## Registered falsifiable prediction (public test for the field)
+
+Any new **acute-inflammation whole-blood cohort assayed in bulk** (array or
+bulk RNA-seq) should reproduce a **negative reference-stratum hub–module
+coupling**; **scRNA pseudobulk and protein layers are expected non-negative**
+(same compartment). The F1/F2 tables in the companion manuscript are the
+current evidence base; the prediction is falsifiable by any cohort that
+violates the sign-by-condition pattern.
+
+**Public registration**: OSF Preregistration, 2026-08-18 —
+DOI [10.17605/OSF.IO/4TZH9](https://doi.org/10.17605/OSF.IO/4TZH9)
+(associated project https://osf.io/v8w5a).
+
+**External validation status (recorded 2026-08-19, honest)**: the authors'
+own value-blind external hold-out (module G1; four never-used
+acute-inflammation blood cohorts GSE66099/GSE40012/GSE57065/GSE37069)
+did **NOT** confirm the reference-stratum prediction (2/4 direction-negative;
+pooled fixed-effect r=+0.004). The registered text above is kept unchanged as
+the auditable record; by the external data, the reference-stratum claim is
+refuted and the inflamed-stratum negative coupling is supported (manuscript
+TableS36). Independent replication by other groups remains the intended
+falsification channel.
+
+## Installation
+
+```bash
+pip install gating-metrics     # once published on PyPI (pending author action)
+# or from source:
+pip install .
+```
+
+## Provenance
+
+Metric definitions are copied verbatim from the frozen F1 decomposition
+dictionary (`manifest.json -> preregistrations.modules.
+F1_variance_decomposition_gating`, registered 2026-08-18). No metric in this
+package was tuned after inspecting the outcome data.
+
+## Citing
+
+If you use this toolkit, please cite the companion manuscript (under
+preparation) and the OSF registration (DOI 10.17605/OSF.IO/4TZH9).
