@@ -23,6 +23,6 @@ dependencies = ["numpy>=1.24", "pandas>=2.0", "scipy>=1.10"]
 "OSF registration" = "https://doi.org/10.17605/OSF.IO/4TZH9"
 "OSF project" = "https://osf.io/v8w5a"
 Homepage = "https://github.com/Shuiruolys-Liu/gating-metrics"
-
+"Zenodo archive" = "https://doi.org/10.5281/zenodo.21995721"
 [tool.setuptools]
 packages = ["gating_metrics"]
