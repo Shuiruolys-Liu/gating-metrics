@@ -1,4 +1,4 @@
-# gating_metrics — measurement toolkit for state-gated co-expression coupling
+preparation), the OSF registration (DOI 10.17605/OSF.IO/4TZH9), and the Zenodo software archive (DOI 10.5281/zenodo.21995721)# gating_metrics — measurement toolkit for state-gated co-expression coupling
 
 Open-source Python toolkit accompanying the ARDS gating-circuit study
 (manifest modules F1/F2/F3, registered 2026-08-18 before execution). It
